@@ -35,4 +35,10 @@ const validate = (data) => {
 	return schema.validate(data);
 };
 
+
+//fetch data for profile
+router.get('/profile', async (req, res) => {
+	const userProfile = await User.findOne({ email: req.body.email })
+})
+
 module.exports = router;

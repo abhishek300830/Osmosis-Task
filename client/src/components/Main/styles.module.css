@@ -25,3 +25,10 @@
 	cursor: pointer;
 	margin-right: 20px;
 }
+.card{
+	background-color: #87d5c7;
+	margin: 50px;
+	margin-left: 300px;
+	margin-right: 300px;
+	padding: 30px;
+}

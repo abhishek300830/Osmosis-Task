@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User, validate } = require("../models/user");
+const { UserProfile } = require("../models/user")
 const bcrypt = require("bcrypt");
 
 router.post("/", async (req, res) => {
@@ -23,5 +24,14 @@ router.post("/", async (req, res) => {
 		res.status(500).send({ message: "Internal Server Error" });
 	}
 });
-
+//for profile ******************
+router.post("/profile", async (req, res) => {
+	try {
+		console.log(req.body)
+		await new UserProfile({ firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email, skills: req.body.skills, about: req.body.about, img: req.body.img }).save();
+		res.status(201).send({ message: "Profile Added successfully" });
+	} catch (error) {
+		res.status(500).send({ message: "Internal Server Error" });
+	}
+})
 module.exports = router;

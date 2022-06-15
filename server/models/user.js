@@ -9,8 +9,19 @@ const userSchema = new mongoose.Schema({
 	lastName: { type: String, required: true },
 	email: { type: String, required: true },
 	password: { type: String, required: true },
-	number: {type: Number, requirede: true},
+	number: { type: Number, requirede: true },
 });
+
+//user profile ******************
+const userProfile = new mongoose.Schema({
+	firstName: { type: String, required: true },
+	lastName: { type: String, required: true },
+	email: { type: String, required: true },
+	skills: { type: String, required: true },
+	about: { type: String, required: true },
+	img: { data: Buffer, contentType: String }
+})
+
 
 userSchema.methods.generateAuthToken = function () {
 	const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
@@ -20,6 +31,7 @@ userSchema.methods.generateAuthToken = function () {
 };
 
 const User = mongoose.model("user", userSchema);
+const UserProfile = mongoose.model("userProfile", userProfile);
 
 const validate = (data) => {
 	const schema = Joi.object({
@@ -32,4 +44,5 @@ const validate = (data) => {
 	return schema.validate(data);
 };
 
+module.exports = { UserProfile }
 module.exports = { User, validate };

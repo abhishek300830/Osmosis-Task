@@ -8,7 +8,9 @@ const Signup = () => {
 		firstName: "",
 		lastName: "",
 		email: "",
-		password: "",
+		skills: "",
+		about: "",
+		img:""
 	});
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
@@ -20,7 +22,7 @@ const Signup = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8080/api/users";
+			const url = "http://localhost:8080/api/users/profile";
 			const { data: res } = await axios.post(url, data);
 			navigate("/login");
 			console.log(res.message);
@@ -48,7 +50,7 @@ const Signup = () => {
 				</div>
 				<div className={styles.right}>
 					<form className={styles.form_container} onSubmit={handleSubmit}>
-						<h1>Create Account</h1>
+						<h1>Create Your Profile</h1>
 						<input
 							type="text"
 							placeholder="First Name"
@@ -77,20 +79,29 @@ const Signup = () => {
 							className={styles.input}
 						/>
 						<input
-							type="password"
-							placeholder="Password"
-							name="password"
+							type="text"
+							placeholder="Enter Your Skills"
+							name="skills"
 							onChange={handleChange}
-							value={data.password}
+							value={data.skills}
 							required
 							className={styles.input}
 						/>
 						<input
-							type="number"
-							placeholder="Mobile Number"
-							name="number"
+							type="text"
+							placeholder="About"
+							name="about"
 							onChange={handleChange}
-							value={data.number}
+							value={data.about}
+							required
+							className={styles.input}
+						/>
+						<input
+							type="file"
+							placeholder="Profile Picture"
+							name="img"
+							onChange={handleChange}
+							value={data.img}
 							required
 							className={styles.input}
 						/>
